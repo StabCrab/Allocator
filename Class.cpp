@@ -44,9 +44,18 @@ void *Class::operator new[](std::size_t size, void *ptr)
 
 void *Class::operator new(std::size_t size, const std::nothrow_t &nth)
 {
-    return std::malloc(size);
+    void* memory =  std::malloc(size);
+    if (memory)
+        return std::malloc(size);
+    else
+        throw std::bad_alloc();
 }
 
-void *Class::operator new[](std::size_t size, const std::nothrow_t &nth) {
-    return std::malloc(size);
+void *Class::operator new[](std::size_t size, const std::nothrow_t &nth)
+{
+    void* memory =  std::malloc(size);
+    if (memory)
+        return std::malloc(size);
+    else
+        throw std::bad_alloc();
 }

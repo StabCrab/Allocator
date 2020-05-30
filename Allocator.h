@@ -1,3 +1,7 @@
+//
+// Created by trykr on 30.05.2020.
+//
+
 #pragma once
 
 #include <stdexcept>
@@ -9,7 +13,7 @@ private:
 public:
     ValueType size() const;
 
-    Allocator(std::size_t size);
+    explicit Allocator(std::size_t size);
 
     ValueType* allocate(std::size_t size) const;
 
@@ -24,7 +28,7 @@ public:
 
 template<typename ValueType>
 ValueType Allocator<ValueType>::size() const {
-        return sizeof(ValueType);
+        return _size;
 }
 
 template<typename ValueType>
@@ -62,4 +66,7 @@ void Allocator<ValueType>::destroy(ValueType *ptr) const
 {
     ptr->~ValueType();
 }
+
+
+
 
